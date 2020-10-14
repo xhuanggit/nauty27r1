@@ -4,6 +4,10 @@
    This is a stand-alone edition of listg.c that does not
    need nauty or any other files.  Use listg in preference
    if you have installed it.  */
+   
+/* Modified by Xiaolong Huang, 2020
+   changed output to show adjacency list more concisely, with number of vertices and edges;
+   in compliance with the Apache License, Version 2.0 as of the original software */
 
 #define USAGE "showg [-p#:#l#o#Ftq] [-a|-A|-c|-d|-e] [infile [outfile]]"
 
@@ -962,15 +966,30 @@ putsetx(FILE *f, set *set1, int *curlenp, int linelength, int m,
 static void
 putgraphx(FILE *f, graph *g, int linelength, boolean triang, int m, int n)
 {
-    int i,curlen;
+    //int i,curlen;
+	int i,j,curlen,ne;
+	boolean digraph = FALSE;  // assume not digraph
     set *pg;
+
+	// print number of vertices and edges
+	//*
+    ne = 0;
+    for (i = 0, pg = g; i < n; ++i, pg += m)
+    {
+        for (j = (digraph?-1:i-1); (j = nextelement(pg,m,j)) >= 0;)
+            ++ne;
+    }
+
+    fprintf(f,"%d %d\n",n,ne);
+	//*/
 
     for (i = 0, pg = g; i < n; ++i, pg += m)
     {
-        fprintf(f,"%3d : ",i + labelorg);
+        //fprintf(f,"%3d : ",i + labelorg);
         curlen = 7;
         putsetx(f,pg,&curlen,linelength,m,FALSE,triang ? i-1 : -1);
-        fprintf(f,";\n");
+        //fprintf(f,";\n");
+		fprintf(f,"\n");
     }
 }
 
@@ -1220,7 +1239,7 @@ main(int argc, char *argv[])
         {
             if (qswitch)
             {
-                if (!eswitch) fprintf(outfile,"%d\n",n);
+                //if (!eswitch) fprintf(outfile,"%d\n",n);
             }
             else fprintf(outfile,"\nGraph %ld, order %d.\n",
                                  pval1+nin-1,n);
