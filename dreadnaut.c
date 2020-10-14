@@ -106,6 +106,10 @@
 *                                                                            *
 *****************************************************************************/
 
+/* Modified by Xiaolong Huang, 2020
+   changed fprintf messages to show only automorphism grpsize,
+   in compliance with the Apache License, Version 2.0 as of the original software */
+
 #include "gtools.h"    /* which includes nauty.h, which includes stdio.h */
 #include "nautinv.h"  
 #include "schreier.h"
