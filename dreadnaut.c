@@ -1514,30 +1514,25 @@ main(int argc, char *argv[])
             }
             else
             {
-                fprintf(outfile,"%d orbit%s",
-				SS(traces_stats.numorbits,"","s"));
-		fprintf(outfile,"; grpsize=");
+                //fprintf(outfile,"%d orbit%s", SS(traces_stats.numorbits,"","s"));
+		//fprintf(outfile,"; grpsize=");
+		fprintf(outfile,"grpsize=");
 		writegroupsize(outfile,
 			       traces_stats.grpsize1,traces_stats.grpsize2);
-                fprintf(outfile,"; %d gen%s",
-                     SS(traces_stats.numgenerators,"","s"));
-                fprintf(outfile,
-		     "; %lu node%s ", SS(traces_stats.numnodes,"","s"));
+                //fprintf(outfile,"; %d gen%s", SS(traces_stats.numgenerators,"","s"));
+                //fprintf(outfile,"; %lu node%s ", SS(traces_stats.numnodes,"","s"));
 		if (traces_stats.interrupted)
 		    fprintf(outfile,
 			    "(%lu interrupted, ",traces_stats.interrupted);
 		else
-		    fprintf(outfile,"(");
-                fprintf(outfile,"%lu peak); maxlev=%d\n",
-		    traces_stats.peaknodes,traces_stats.treedepth);
+		    //fprintf(outfile,"(");
+                //fprintf(outfile,"%lu peak); maxlev=%d\n", traces_stats.peaknodes,traces_stats.treedepth);
                 if (options_getcanon)
                     fprintf(outfile,
 		            "canupdates=%d; ",traces_stats.canupdates);
 #ifdef  CPUTIME
-                fprintf(outfile,actmult == 1 ?
-                              "cpu time = %.2f seconds\n" :
-                              "cpu time = %.7f seconds\n",
-			      (timeafter-timebefore)/actmult);
+                //fprintf(outfile,actmult == 1 ? "cpu time = %.2f seconds\n" : "cpu time = %.7f seconds\n", (timeafter-timebefore)/actmult);
+				fprintf(outfile,"\n");
 #else
 		fprintf(outfile,"\n");
 #endif
@@ -1721,24 +1716,22 @@ main(int argc, char *argv[])
 			else                    cvalid_sg = TRUE;
 		    }
                     ovalid = TRUE;
-                    fprintf(outfile,"%d orbit%s",SS(stats.numorbits,"","s"));
-		    fprintf(outfile,"; grpsize=");
+                    //fprintf(outfile,"%d orbit%s",SS(stats.numorbits,"","s"));
+		    //fprintf(outfile,"; grpsize=");
+			fprintf(outfile,"grpsize=");
 		    writegroupsize(outfile,stats.grpsize1,stats.grpsize2);
-                    fprintf(outfile,"; %d gen%s",
-                            SS(stats.numgenerators,"","s"));
-                    fprintf(outfile,"; %lu node%s",SS(stats.numnodes,"","s"));
+                    //fprintf(outfile,"; %d gen%s", SS(stats.numgenerators,"","s"));
+                    //fprintf(outfile,"; %lu node%s",SS(stats.numnodes,"","s"));
                     if (stats.numbadleaves)
                         fprintf(outfile," (%lu bad lea%s)",
                             SS(stats.numbadleaves,"f","ves"));
-                    fprintf(outfile,"; maxlev=%d\n", stats.maxlevel);
+                    //fprintf(outfile,"; maxlev=%d\n", stats.maxlevel);
                     /* fprintf(outfile,"tctotal=%lu",stats.tctotal); */
                     if (options_getcanon)
                         fprintf(outfile,"canupdates=%lu; ",stats.canupdates);
 #ifdef  CPUTIME
-                    fprintf(outfile,actmult == 1 ?
-                              "cpu time = %.2f seconds\n" :
-                              "cpu time = %.7f seconds\n",
-                            (timeafter-timebefore)/actmult);
+                    //fprintf(outfile,actmult == 1 ? "cpu time = %.2f seconds\n" : "cpu time = %.7f seconds\n", (timeafter-timebefore)/actmult);
+					fprintf(outfile,"\n");
 #else
                     fprintf(outfile,"\n");
 #endif
